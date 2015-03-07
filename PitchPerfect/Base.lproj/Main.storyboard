@@ -2,19 +2,53 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="65A-2I-6aa">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Play Sounds View Controller-->
         <scene sceneID="fe0-J7-rKT">
             <objects>
-                <viewController id="fQq-R4-8yr" sceneMemberID="viewController">
+                <viewController id="fQq-R4-8yr" customClass="PlaySoundsViewController" customModule="PitchPerfect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OQF-Uh-gcb"/>
                         <viewControllerLayoutGuide type="bottom" id="9kd-99-O9D"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Vwl-rB-Zyh">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msL-9l-ZfR">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="Snail">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="playSoundSlowly:" destination="fQq-R4-8yr" eventType="touchUpInside" id="eSM-8I-gsD"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="msL-9l-ZfR" firstAttribute="top" secondItem="OQF-Uh-gcb" secondAttribute="bottom" constant="8" symbolic="YES" id="a2O-iC-bJu"/>
+                            <constraint firstItem="msL-9l-ZfR" firstAttribute="leading" secondItem="Vwl-rB-Zyh" secondAttribute="leadingMargin" id="bAZ-MV-9zX"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="msL-9l-ZfR"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="a2O-iC-bJu"/>
+                                <exclude reference="bAZ-MV-9zX"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="msL-9l-ZfR"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="a2O-iC-bJu"/>
+                                <include reference="bAZ-MV-9zX"/>
+                            </mask>
+                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mGR-Ob-mRR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -151,6 +185,7 @@
     </scenes>
     <resources>
         <image name="Microphone" width="100" height="100"/>
+        <image name="Snail" width="100" height="100"/>
         <image name="Stop" width="50" height="50"/>
     </resources>
 </document>
