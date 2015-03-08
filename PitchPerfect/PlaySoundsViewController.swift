@@ -15,28 +15,52 @@ class PlaySoundsViewController: UIViewController {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
         // Do any additional setup after loading the view.
-		var filePath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3")
+	}
+	
+	override func viewWillAppear(animated: Bool) {
+		var filePath = NSBundle.mainBundle().pathForResource("gump", ofType: nil)
+		filePath = NSBundle.mainBundle().pathForResource("gump", ofType: "mp3")
+		filePath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3")
+		
 		var urlPath = NSURL(fileURLWithPath: filePath!)
 		audioPlayer = AVAudioPlayer(contentsOfURL: urlPath, error: nil)
 		audioPlayer.enableRate = true
 		audioPlayer.prepareToPlay()
+		stopButton.hidden = true
 	}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+	
+	private func playSound(rate: Float) {
+		audioPlayer.rate = rate
+		audioPlayer.stop() // a good practice?
+		audioPlayer.currentTime = 0
+		stopButton.hidden = false
+		audioPlayer.play()
+		println("Played sound!")
+	}
+	
+	@IBAction func playSoundQuickly(sender: UIButton) {
+		//TODO: Play sound quicly
+		playSound(1.5)
+	}
 
 	@IBAction func playSoundSlowly(sender: UIButton) {
 		//TODO: Play sound slowly
-
-		audioPlayer.rate = 0.5
-		audioPlayer.stop() // a good practice?
+		playSound(0.5)
+	}
+	
+	@IBOutlet weak var stopButton: UIButton!
+	
+	@IBAction func stopPlaying(sender: UIButton) {
 		audioPlayer.currentTime = 0
-		audioPlayer.play()
-		println("Played sound!")
+		audioPlayer.stop()
+		sender.hidden = true
 	}
 	
     /*

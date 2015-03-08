@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A38413A1AABC39C0047FF95 /* gump.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9A3841391AABC39C0047FF95 /* gump.mp3 */; };
 		9A5B25BD1AAA885B00CAFF2D /* movie_quote.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9A5B25BC1AAA885B00CAFF2D /* movie_quote.mp3 */; };
 		9AC1C4DD1AA839A00035A018 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC1C4DC1AA839A00035A018 /* AppDelegate.swift */; };
 		9AC1C4DF1AA839A00035A018 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC1C4DE1AA839A00035A018 /* ViewController.swift */; };
@@ -28,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A3841391AABC39C0047FF95 /* gump.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gump.mp3; sourceTree = "<group>"; };
+		9A38413B1AABC4470047FF95 /* gump */ = {isa = PBXFileReference; lastKnownFileType = file; path = gump; sourceTree = "<group>"; };
 		9A5B25BC1AAA885B00CAFF2D /* movie_quote.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = movie_quote.mp3; sourceTree = "<group>"; };
 		9AC1C4D71AA839A00035A018 /* PitchPerfect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PitchPerfect.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AC1C4DB1AA839A00035A018 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,6 +66,7 @@
 		9AC1C4CE1AA8399F0035A018 = {
 			isa = PBXGroup;
 			children = (
+				9A3841391AABC39C0047FF95 /* gump.mp3 */,
 				9A5B25BC1AAA885B00CAFF2D /* movie_quote.mp3 */,
 				9AC1C4D91AA839A00035A018 /* PitchPerfect */,
 				9AC1C4EF1AA839A00035A018 /* PitchPerfectTests */,
@@ -87,6 +91,7 @@
 				9AC1C4FC1AA9844C0035A018 /* PlaySoundsViewController.swift */,
 				9AC1C4E01AA839A00035A018 /* Main.storyboard */,
 				9AC1C4E31AA839A00035A018 /* Images.xcassets */,
+				9A38413B1AABC4470047FF95 /* gump */,
 				9AC1C4E51AA839A00035A018 /* LaunchScreen.xib */,
 				9AC1C4DA1AA839A00035A018 /* Supporting Files */,
 			);
@@ -199,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A5B25BD1AAA885B00CAFF2D /* movie_quote.mp3 in Resources */,
+				9A38413A1AABC39C0047FF95 /* gump.mp3 in Resources */,
 				9AC1C4E21AA839A00035A018 /* Main.storyboard in Resources */,
 				9AC1C4E71AA839A00035A018 /* LaunchScreen.xib in Resources */,
 				9AC1C4E41AA839A00035A018 /* Images.xcassets in Resources */,
