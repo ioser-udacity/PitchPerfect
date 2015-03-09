@@ -12,6 +12,7 @@ import AVFoundation
 class PlaySoundsViewController: UIViewController {
 
 	var audioPlayer: AVAudioPlayer!
+	var recordedAudio: RecordedAudio? // set during seque transition from RecordSoundsViewController
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,11 +21,10 @@ class PlaySoundsViewController: UIViewController {
 	}
 	
 	override func viewWillAppear(animated: Bool) {
-		var filePath = NSBundle.mainBundle().pathForResource("gump", ofType: nil)
-		filePath = NSBundle.mainBundle().pathForResource("gump", ofType: "mp3")
-		filePath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3")
+//		var filePath = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3")
+//		var urlPath = NSURL(fileURLWithPath: filePath!)
 		
-		var urlPath = NSURL(fileURLWithPath: filePath!)
+		var urlPath = recordedAudio?.filePathUrl
 		audioPlayer = AVAudioPlayer(contentsOfURL: urlPath, error: nil)
 		audioPlayer.enableRate = true
 		audioPlayer.prepareToPlay()
