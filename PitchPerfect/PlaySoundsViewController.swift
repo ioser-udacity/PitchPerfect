@@ -9,15 +9,20 @@
 import UIKit
 import AVFoundation
 
-class PlaySoundsViewController: UIViewController {
+class PlaySoundsViewController: UIViewController, AVAudioPlayerDelegate {
 
 	var audioPlayer: AVAudioPlayer!
-	var recordedAudio: RecordedAudio? // set during seque transition from RecordSoundsViewController
+	var recordedAudio: RecordedAudio! // set during seque transition from RecordSoundsViewController
+	
+	var audioEngine: AVAudioEngine!
+	var audioFile:AVAudioFile!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
         // Do any additional setup after loading the view.
+		audioEngine = AVAudioEngine()
+		audioFile = AVAudioFile(forReading: recordedAudio.filePathUrl, error: nil)
 	}
 	
 	override func viewWillAppear(animated: Bool) {
@@ -26,6 +31,7 @@ class PlaySoundsViewController: UIViewController {
 		
 		var urlPath = recordedAudio?.filePathUrl
 		audioPlayer = AVAudioPlayer(contentsOfURL: urlPath, error: nil)
+		audioPlayer.delegate = self
 		audioPlayer.enableRate = true
 		audioPlayer.prepareToPlay()
 		stopButton.hidden = true
@@ -35,6 +41,38 @@ class PlaySoundsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+	
+	func audioPlayerDidFinishPlaying(player: AVAudioPlayer!, successfully flag: Bool) {
+		stopButton.hidden = true
+		println("Hiding the stop button")
+	}
+	
+	private func hideStopButton() {
+		self.stopButton.hidden = true
+		println("Hiding the stop button")
+	}
+	
+	private func playAudioWithVariablePitch(pitch: Float){
+		audioPlayer.stop()
+		audioEngine.stop()
+		audioEngine.reset()
+		stopButton.hidden = false
+		
+		var audioPlayerNode = AVAudioPlayerNode()
+		audioEngine.attachNode(audioPlayerNode)
+		
+		var changePitchEffect = AVAudioUnitTimePitch()
+		changePitchEffect.pitch = pitch
+		audioEngine.attachNode(changePitchEffect)
+		
+		audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
+		audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
+		
+		audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: hideStopButton)
+		audioEngine.startAndReturnError(nil)
+		
+		audioPlayerNode.play()
+	}
 	
 	private func playSound(rate: Float) {
 		audioPlayer.rate = rate
@@ -50,6 +88,14 @@ class PlaySoundsViewController: UIViewController {
 		playSound(1.5)
 	}
 
+	@IBAction func playVadarStyle(sender: UIButton) {
+		playAudioWithVariablePitch(-1000)
+	}
+	
+	@IBAction func playChipmunkStyle(sender: UIButton) {
+		playAudioWithVariablePitch(1000)
+	}
+	
 	@IBAction func playSoundSlowly(sender: UIButton) {
 		//TODO: Play sound slowly
 		playSound(0.5)
